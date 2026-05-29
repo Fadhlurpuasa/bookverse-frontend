@@ -92,6 +92,11 @@ export default function Navbar() {
                     </Link>
                   </li>
 
+                  <li>
+                    <Link className="dropdown-item" to="/admin/api-keys">
+                      API Keys
+                    </Link>
+                  </li>
                 </ul>
               </li>
             )}
