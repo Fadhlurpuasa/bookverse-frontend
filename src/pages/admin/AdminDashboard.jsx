@@ -8,19 +8,50 @@ export default function AdminDashboard() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
 
+  async function loadDashboard() {
+    try {
+      const res = await adminApi.dashboard();
+      const result = unwrap(res);
+
+      console.log('Dashboard data:', result);
+
+      setData(result);
+    } catch (err) {
+      console.error('Gagal memuat dashboard:', err);
+      alert(err.response?.data?.message || 'Gagal memuat dashboard');
+    } finally {
+      setLoading(false);
+    }
+  }
+
   useEffect(() => {
-    adminApi
-      .dashboard()
-      .then((res) => setData(unwrap(res)))
-      .finally(() => setLoading(false));
+    loadDashboard();
   }, []);
 
   if (loading) return <Loading />;
 
+  const totalBooks =
+    data?.totalBooks ??
+    data?.books ??
+    data?.bookCount ??
+    0;
+
+  const totalUsers =
+    data?.totalUsers ??
+    data?.users ??
+    data?.userCount ??
+    0;
+
+  const totalOrders =
+    data?.totalOrders ??
+    data?.orders ??
+    data?.orderCount ??
+    0;
+
   const cards = [
-    ['Total Buku', data?.totalBooks || 0, 'bi-book'],
-    ['Total User', data?.totalUsers || 0, 'bi-people'],
-    ['Total Pesanan', data?.totalOrders || 0, 'bi-receipt']
+    ['Total Buku', totalBooks, 'bi-book'],
+    ['Total User', totalUsers, 'bi-people'],
+    ['Total Pesanan', totalOrders, 'bi-receipt']
   ];
 
   return (
@@ -33,6 +64,10 @@ export default function AdminDashboard() {
           </p>
         </div>
 
+        <button className="btn btn-outline-secondary me-2" onClick={loadDashboard}>
+          Refresh
+        </button>
+
         <Link className="btn btn-primary" to="/admin/books">
           Kelola Buku
         </Link>
@@ -43,14 +78,8 @@ export default function AdminDashboard() {
           <div className="col-md-4" key={card[0]}>
             <div className="admin-stat">
               <i className={`bi ${card[2]} fs-2 text-primary`}></i>
-
-              <p className="text-muted mt-3 mb-1">
-                {card[0]}
-              </p>
-
-              <h3 className="fw-bold">
-                {card[1]}
-              </h3>
+              <p className="text-muted mt-3 mb-1">{card[0]}</p>
+              <h3 className="fw-bold">{card[1]}</h3>
             </div>
           </div>
         ))}
