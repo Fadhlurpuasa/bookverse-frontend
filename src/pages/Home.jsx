@@ -34,7 +34,7 @@ export default function Home() {
             <div className="col-lg-6">
               <span className="badge rounded-pill text-bg-light border mb-3">Toko Buku + AI-like Recommendation</span>
               <h1 className="display-4 fw-bold lh-sm">Temukan buku yang pas dengan mood, tujuan, dan budget kamu.</h1>
-              <p className="lead text-muted mt-3">BookVerse membantu pembaca memilih buku lewat katalog pintar, rekomendasi personal, wishlist, keranjang, checkout, dan public API untuk developer lain.</p>
+              <p className="lead text-muted mt-3">BookVerse membantu pembaca memilih buku lewat katalog pintar, rekomendasi personal, wishlist, keranjang, dan checkout.</p>
               <div className="d-flex gap-3 mt-4 flex-wrap">
                 <Link className="btn btn-primary btn-lg" to="/recommendations"><i className="bi bi-stars me-2"></i>Cari Rekomendasi</Link>
                 <Link className="btn btn-outline-dark btn-lg" to="/books">Lihat Katalog</Link>
