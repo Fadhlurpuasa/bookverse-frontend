@@ -56,7 +56,6 @@ export default function Home() {
       <section className="container py-5">
         <div className="row g-3 mb-4">
           <div className="col-md-4"><Feature icon="bi bi-magic" title="Rekomendasi unik" text="Cari buku berdasarkan keinginan, bukan hanya judul." /></div>
-          <div className="col-md-4"><Feature icon="bi bi-code-slash" title="Public API" text="Developer lain bisa pakai API BookVerse." /></div>
           <div className="col-md-4"><Feature icon="bi bi-shield-lock" title="Admin panel" text="Kelola buku, kategori, pesanan, dan API key." /></div>
         </div>
 
